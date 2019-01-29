@@ -17,17 +17,18 @@ class BlendShapeCharacter: NSObject, VirtualContentController {
     
      private lazy var neutralNode = contentNode?.childNode(withName: "Neutral", recursively: true)
      private lazy var morphs: [SCNGeometry] = neutralNode?.morpher.flatMap({ return $0.targets }) ?? []
-  
     
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard anchor is ARFaceAnchor else { return nil }
-        contentNode = loadedContentForAsset(named: "Character-2/Sample-face", type: "scn")
-        //contentNode?.scale = SCNVector3(x: 0.7, y: 0.7, z: 0.7)
-        //contentNode?.position = SCNVector3(x: 0, y: 0, z: -0.089)
+    init(geometry: ARSCNFaceGeometry) {
+       contentNode = loadedContentForAsset(named: "Character-2/Sample-face", type: "scn")
+        super.init()
         let morpher = SCNMorpher()
         morpher.targets = morphs
         morpher.unifiesNormals = true
         neutralNode?.morpher? = morpher
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard anchor is ARFaceAnchor, contentNode != nil else { return nil }
         return contentNode
     }
     

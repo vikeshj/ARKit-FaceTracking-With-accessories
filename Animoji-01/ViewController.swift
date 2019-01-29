@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         guard let device = MTLCreateSystemDefaultDevice(), let faceGeometry =  ARSCNFaceGeometry(device: device, fillMesh: false) else { return }
         
         //add contents
-        contents.append(BlendShapeCharacter())
+        contents.append(BlendShapeCharacter(geometry: faceGeometry))
         //contents.append(TransformVisualization(geometry: faceGeometry))
         contents.append(FaceOcclusionOverlay(geometry: faceGeometry))
         
