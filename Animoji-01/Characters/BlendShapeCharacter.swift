@@ -14,6 +14,8 @@ import ARKit
 class BlendShapeCharacter: NSObject, VirtualContentController {
     
     var contentNode: SCNNode?
+    var name: String? = "BlendCharacter"
+    var lastTransform: simd_float4x4?
     
      private lazy var neutralNode = contentNode?.childNode(withName: "Neutral", recursively: true)
      private lazy var morphs: [SCNGeometry] = neutralNode?.morpher.flatMap({ return $0.targets }) ?? []
@@ -35,6 +37,12 @@ class BlendShapeCharacter: NSObject, VirtualContentController {
     /// - Tag: BlendShapeAnimation
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
+        lastTransform = faceAnchor.transform
+        if !faceAnchor.isTracked {
+            guard let transform = lastTransform else { return }
+            node.position = SCNVector3.positionFromTransform(transform)
+            node.isHidden = false
+        }
         
         let blendShapes = faceAnchor.blendShapes
         guard let eyeBlinkLeft = blendShapes[.eyeBlinkLeft]?.floatValue,
@@ -68,11 +76,13 @@ class BlendShapeCharacter: NSObject, VirtualContentController {
         neutralNode?.morpher?.setWeight(CGFloat(noseSneerLeft), forTargetNamed: "noseSneerLeftMesh")
         neutralNode?.morpher?.setWeight(CGFloat(eyeBlinkRight), forTargetNamed: "eyeBlinkRightMesh")
         neutralNode?.morpher?.setWeight(CGFloat(eyeBlinkLeft), forTargetNamed: "eyeBlinkLeftMesh")
-        
-        //faceGeometry.update(from: faceAnchor.geometry)
     }
     
-    
+    func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
+        guard let contentNode = neutralNode, contentNode.geometry != nil else { return }
+        //let faceGeometry = contentNode.geometry as! ARSCNFaceGeometry
+        //faceGeometry.update(from: faceAnchor.geometry)
+    }
     
 }
 

@@ -36,6 +36,13 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     // MARK: - AR Session
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        guard let faceAnchor = anchors.first as? ARFaceAnchor else { return }
+        currentFaceAnchor = faceAnchor
+        let _ = contents.compactMap { vc in
+            vc.update(withFaceAnchor: faceAnchor)
+        }
+    }
     
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
         return true

@@ -9,7 +9,7 @@ import ARKit
 import SceneKit
 
 class TransformVisualization: NSObject, VirtualContentController {
-    
+    var name: String?
     var startLeftEye : simd_float3?;
     var endLeftEye : simd_float3?;
     
@@ -53,4 +53,7 @@ class TransformVisualization: NSObject, VirtualContentController {
         rightEyeNode?.simdTransform = faceAnchor.rightEyeTransform * rotate;
     }
     
+    func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
+        
+    }
 }

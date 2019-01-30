@@ -10,7 +10,7 @@ import ARKit
 import SceneKit
 
 class FaceOcclusionOverlay: NSObject, VirtualContentController {
-    
+    var name: String?
     var contentNode: SCNNode?
     var occlusionNode: SCNNode!
     var hat: SCNNode!
@@ -42,4 +42,7 @@ class FaceOcclusionOverlay: NSObject, VirtualContentController {
         hat.position.y = faceGeometry.boundingSphere.radius
     }
     
+    func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
+        
+    }
 }

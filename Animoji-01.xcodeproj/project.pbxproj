@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11F7535C22009F3C002D3E5E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7535B22009F3C002D3E5E /* Helpers.swift */; };
 		AD0F9BC721F70D0600F545F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F9BC621F70D0600F545F4 /* AppDelegate.swift */; };
 		AD0F9BC921F70D0600F545F4 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0F9BC821F70D0600F545F4 /* Models.scnassets */; };
 		AD0F9BCB21F70D0600F545F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F9BCA21F70D0600F545F4 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11F7535B22009F3C002D3E5E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		AD0F9BC321F70D0600F545F4 /* Animoji-01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animoji-01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0F9BC621F70D0600F545F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD0F9BC821F70D0600F545F4 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11F7535A22009F23002D3E5E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				11F7535B22009F3C002D3E5E /* Helpers.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		AD0F9BBA21F70D0600F545F4 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +82,7 @@
 		AD0F9BC521F70D0600F545F4 /* Animoji-01 */ = {
 			isa = PBXGroup;
 			children = (
+				11F7535A22009F23002D3E5E /* Utilities */,
 				AD0F9BEA21F75BAA00F545F4 /* Characters */,
 				AD0F9BE721F7544100F545F4 /* Expression */,
 				AD0F9BE221F7399200F545F4 /* Floating Mask */,
@@ -191,6 +202,7 @@
 				AD448D1621F886360014D92B /* BlendShapeCharacter.swift in Sources */,
 				AD0F9BDD21F718EC00F545F4 /* ViewController+ARSCNViewDelegate.swift in Sources */,
 				AD0F9BE621F739CD00F545F4 /* VirtualFaceContent.swift in Sources */,
+				11F7535C22009F3C002D3E5E /* Helpers.swift in Sources */,
 				AD0F9BE421F739A800F545F4 /* Mask.swift in Sources */,
 				AD0F9BCB21F70D0600F545F4 /* ViewController.swift in Sources */,
 				AD448D1821F9DF500014D92B /* FaceOcclusionOverlay.swift in Sources */,
