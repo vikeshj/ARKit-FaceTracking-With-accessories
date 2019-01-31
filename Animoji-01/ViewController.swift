@@ -49,17 +49,7 @@ class ViewController: UIViewController {
         //add contents
         contents.append(BlendShapeCharacter(geometry: faceGeometry))
         //contents.append(TransformVisualization(geometry: faceGeometry))
-        //contents.append(FaceOcclusionOverlay(geometry: faceGeometry))
-        
-        
-        let node = sceneView.scene.rootNode
-        if (contents.count > 0) {
-            let _ = contents.compactMap { vc in
-                //make sure all contents are added in the parent node
-                guard let contentNode = vc.contentNode else { return }
-                node.addChildNode(contentNode)
-            }
-        }
+        contents.append(FaceOcclusionOverlay(geometry: faceGeometry))
     }
     
     override func viewDidAppear(_ animated: Bool) {

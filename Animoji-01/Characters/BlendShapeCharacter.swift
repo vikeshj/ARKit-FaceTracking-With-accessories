@@ -38,11 +38,11 @@ class BlendShapeCharacter: NSObject, VirtualContentController {
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
         lastTransform = faceAnchor.transform
-        if !faceAnchor.isTracked {
+        /*if !faceAnchor.isTracked {
             guard let transform = lastTransform else { return }
             node.position = SCNVector3.positionFromTransform(transform)
             node.isHidden = false
-        }
+        }*/
         
         let blendShapes = faceAnchor.blendShapes
         guard let eyeBlinkLeft = blendShapes[.eyeBlinkLeft]?.floatValue,
@@ -93,5 +93,12 @@ enum EmotionType: Int, CustomStringConvertible {
         get {
             return "\(self.rawValue)Mesh"
         }
+    }
+}
+
+
+extension matrix_float4x4 {
+    func position() -> SCNVector3 {
+        return SCNVector3(columns.3.x, columns.3.y, columns.3.z)
     }
 }

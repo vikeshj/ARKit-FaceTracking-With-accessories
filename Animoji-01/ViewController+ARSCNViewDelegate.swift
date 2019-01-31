@@ -31,17 +31,28 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
             let _ = contents.compactMap({vc in
                 guard let contentNode = vc.contentNode, contentNode.parent == node else { return }
                 vc.renderer(renderer, didUpdate: contentNode, for: anchor)
+               // print("x:\(contentNode.parent?.worldPosition) : \(contentNode.parent?.isHidden)")
+                guard let isHidden = contentNode.parent?.isHidden, let pos = contentNode.parent?.worldPosition, let pov = sceneView.pointOfView else { return }
+                //let position = pov.position
+
+                if(isHidden) {
+                    contentNode.parent?.isHidden = false
+                    //contentNode.parent?.localTranslate(by: SCNVector3(x: position.x, y: position.y, z: position.z))
+                }
+                
             })
+            
+           
         }
     }
     
     // MARK: - AR Session
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        guard let faceAnchor = anchors.first as? ARFaceAnchor else { return }
-        currentFaceAnchor = faceAnchor
-        let _ = contents.compactMap { vc in
-            vc.update(withFaceAnchor: faceAnchor)
-        }
+//        guard let faceAnchor = anchors.first as? ARFaceAnchor else { return }
+//        currentFaceAnchor = faceAnchor
+//        let _ = contents.compactMap { vc in
+//            vc.update(withFaceAnchor: faceAnchor)
+//        }
     }
     
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
